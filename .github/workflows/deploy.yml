@@ -13,13 +13,17 @@ on:
 # 하나의 Workflow는 1개 이상의 Job으로 구성됨
 # 여러 Job들은 기본적으로 병렬적으로 수행됨
 jobs:
-  # Job을 식별하기 위한 id
   My-Deploy-Job:
-    # Github Actions를 실행시킬 서버의 OS 종류 선택
-    runs-on: ubuntu-latest # ubuntu 환경 / 가장 최신 버전(latest)
+    runs-on: ubuntu-latest
 
-    # Step: 특정 작업을 수행하는 가장 작은 단위
-    # Job은 여러 Step들로 구성되고, 순차적으로 실행됨
     steps:
-      - name: Hello World 출력  # Step별 이름 지정
-        run: echo "Hello World" # 실제 실행시킬 명령어 작성
+      - name: Hello World 출력
+        run: echo "Hello World"
+      
+      ...
+      
+      # 참고: https://docs.github.com/en/actions/learn-github-actions/variables
+      - name: Github Actions 자체에 저장되어 있는 변수 사용해보기 # 변수를 의미하는 $ 기호
+        run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
